@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mi Recetario</string>
+    <string name="app_id">26dc4baa</string>
+    <string name="app_key">5c47df10936efed9ecfa97eb1e652ac8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
