@@ -3,11 +3,11 @@
 
     <!--Grosor y color del borde -->
     <stroke
-        android:width="3dp"
+        android:width="4dp"
         android:color="@color/white"/>
 
     <!--Color del background -->
-    <solid android:color="@color/naranjaClarito"/>
+    <solid android:color="@color/customVerde2"/>
 
     <!--El redondeado de las esquinas -->
     <corners android:radius="5dp" />

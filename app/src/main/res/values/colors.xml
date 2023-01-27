@@ -10,5 +10,8 @@
     <color name="naranjaClarito">#ECBD96</color>
     <color name="verdeClarito">#A2D19A</color>
     <color name="azul">#076CDA</color>
+    <color name="customVerde2">#04C17F</color>
+    <color name="customWhite">#F8F7F7</color>
+    <color name="customVerde3">#1A513E</color>
 
 </resources>

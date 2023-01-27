@@ -4,7 +4,7 @@
     <!--Grosor y color del borde -->
     <stroke
         android:width="3dp"
-        android:color="@color/naranjaClarito"/>
+        android:color="@color/customVerde2"/>
 
     <!--Color del background -->
     <solid android:color="@color/white"/>

@@ -9,12 +9,14 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.setPadding
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.FragmentMainBinding
 import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
+import com.miguelgallardocastillo.proyectoprimertrimestre.model.Recipe
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.detail.DetailFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,7 +60,13 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
 
             CoroutineScope(Dispatchers.Main).launch {
                 binding.progress.visibility = VISIBLE
+                /*Le pasamos al adapter una lista de recetas vacía para que no muestre nada y pueda verse la progress bar
+                al refrescar el recycler.*/
+                val recetasVacias = emptyList<Receta>()
+                adapter.listaRecetas = recetasVacias
+                adapter.notifyDataSetChanged()
                 binding.textoBienvenida.text = "¡Disfruta de más recetas!"
+                binding.textoBienvenida.setPadding(20)
                 val recipes = viewModel.obtenerRecetasRandom()
                 val recetas =
                     recipes.map { //El result es la lista que devuelve el RemoteConnection.

@@ -21,18 +21,19 @@
             android:id="@+id/imagenReceta"
             android:layout_width="match_parent"
             android:layout_height="290dp"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:background="@color/white"/>
 
         <TextView
             android:id="@+id/tituloReceta"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:background="@drawable/rounded_corner_bg_naranja"
+            android:background="@drawable/rounded_corner_bg_verde"
             android:gravity="center"
             android:lines="1"
             android:padding="3dp"
-            android:text="jalsjlkslkfs"
+            android:text="Nombre de la receta"
             android:textColor="@color/white"
             android:textSize="26dp" />
 
