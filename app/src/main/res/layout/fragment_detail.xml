@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.detail.DetailFragment"
-    android:background="@color/customWhite"
     android:padding="5dp">
 
     <androidx.core.widget.NestedScrollView
@@ -21,7 +20,7 @@
             android:padding="6dp">
 
             <TextView
-                android:id="@+id/dTituloReceta"
+                android:id="@+id/recipeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -34,7 +33,7 @@
                 android:textSize="30dp" />
 
             <ImageView
-                android:id="@+id/dImagenReceta"
+                android:id="@+id/recipeImage"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="4dp"
@@ -48,7 +47,8 @@
                 android:backgroundTint="@color/customVerde2"
                 android:clickable="true"
                 app:layout_anchorGravity="bottom|end"
-                app:srcCompat="@drawable/favourite_selected" />
+                app:srcCompat="@drawable/ic_baseline_favorite_24"
+               />
 
             <TextView
                 android:id="@+id/macronutrientes"
@@ -99,7 +99,7 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="3dp"
-                android:background="@drawable/roundend_corner_bg_white"
+                android:background="@drawable/rounded_corner_bg_verde"
                 android:padding="3dp">
 
                 <TextView
@@ -111,7 +111,7 @@
                     android:fontFamily="@font/pt_serif"
                     android:gravity="start"
                     android:text="Kcal:"
-                    android:textColor="@color/customVerde2"
+                    android:textColor="@color/white"
                     android:textSize="22dp" />
 
                 <TextView
@@ -123,23 +123,9 @@
                     android:fontFamily="@font/pt_serif"
                     android:gravity="end"
                     android:text="Peso:"
-                    android:textColor="@color/customVerde2"
+                    android:textColor="@color/white"
                     android:textSize="22dp" />
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/tipoReceta"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:background="@drawable/rounded_corner_bg_verde"
-                android:fontFamily="@font/pt_serif"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="Tipo de receta:  "
-                android:textColor="@color/white"
-                android:textSize="25dp" />
 
             <Button
                 android:id="@+id/buttonEnlaceReceta"

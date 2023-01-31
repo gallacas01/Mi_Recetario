@@ -16,6 +16,7 @@
         <item name="android:itemBackground">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:fontFamily">@font/pt_serif</item>
+        <item name="android:colorBackground">@color/customWhite</item>
     </style>
 
 

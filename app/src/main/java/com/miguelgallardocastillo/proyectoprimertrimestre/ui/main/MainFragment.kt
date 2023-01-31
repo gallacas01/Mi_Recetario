@@ -10,13 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.core.view.setPadding
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.FragmentMainBinding
 import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
-import com.miguelgallardocastillo.proyectoprimertrimestre.model.Recipe
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.detail.DetailFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +25,7 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
     private val viewModel:MainViewModel by viewModels{MainViewModelFactory(getString(R.string.app_id),getString(R.string.app_key))}
     private val adapter = RecetaAdapter(){ Receta -> viewModel.navigateTo(Receta) }
     private lateinit var binding: FragmentMainBinding
+
 
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,10 +71,9 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
                     recipes.map { //El result es la lista que devuelve el RemoteConnection.
                         Receta(
                             it.label,
-                            it.image,
+                            it.urlImage,
                             it.calories.toString(),
-                            it.mealType.toString(),
-                            it.urlReceta,
+                            it.urlRecipe,
                             it.fat,
                             it.carbs,
                             it.protein,
@@ -89,6 +87,7 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
             binding.swipe.isRefreshing = false
         }
         binding.searchView.setOnQueryTextListener(this)
+
     }//Fin del onViewCreated
 
     //Método al que se llama cuando se pulsa en el botón de buscar en el searchView

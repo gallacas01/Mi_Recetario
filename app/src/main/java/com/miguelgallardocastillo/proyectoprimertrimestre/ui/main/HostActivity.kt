@@ -1,17 +1,12 @@
 package com.miguelgallardocastillo.proyectoprimertrimestre.ui.main
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.ActivityMainBinding
 
@@ -41,11 +36,14 @@ class HostActivity : AppCompatActivity() {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.mainFragment)
                 true
             }
-            R.id.favourites -> {
+            R.id.bntFavourites -> {
 
                 findNavController(R.id.fragmentContainerView).navigate(R.id.favouritesFragment)
                 true
             }
+            R.id.btnAddRecipe ->{
+                findNavController(R.id.fragmentContainerView).navigate(R.id.addRecipeFragment)
+                true            }
             else -> super.onOptionsItemSelected(item)
         }
     }

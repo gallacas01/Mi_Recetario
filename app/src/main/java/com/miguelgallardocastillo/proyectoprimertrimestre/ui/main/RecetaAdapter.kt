@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.SearchView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
@@ -42,12 +41,12 @@ class RecetaAdapter (val recetaClickedListener: (Receta) -> Unit) : RecyclerView
 
            binding.tituloReceta.text = receta.label
             if(binding.imagenReceta != null){
-                binding.imagenReceta.glide(receta.image)
+                binding.imagenReceta.glide(receta.urlImage)
             }
         }
     }
 
-}//Fin de la clase RecetaAdapter.
+}
 
 
 //Método para usar el glide en otras clases
