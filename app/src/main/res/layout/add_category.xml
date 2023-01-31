@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_gravity="center"
+       android:padding="7dp"
+       android:background="@drawable/green_corners">
+
+      <ImageView
+          android:layout_width="175dp"
+          android:layout_height="170dp"
+          android:layout_gravity="center"
+          android:src="@mipmap/taco_icon" />
+
+      <TextView
+          android:layout_width="292dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="¡Añade tu tipo de comida favorito!"
+          android:textColor="@color/customVerde3"
+          android:layout_marginVertical="12dp"
+          android:textSize="35dp" />
+
+      <EditText
+          android:id="@+id/favouriteFood"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/customVerde3"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:minHeight="48dp"
+          android:text="pasta"
+          android:textColor="@color/customVerde3"/>
+
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="aceptar"
+          android:layout_marginTop="5dp"
+          android:background="@drawable/button_rounded"
+          android:textColor="@color/customWhite"/>
+
+
+
+
+   </LinearLayout>
+
+</FrameLayout>

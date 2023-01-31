@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/btnMore"
+        android:icon="@drawable/ic_more"
+        app:showAsAction="always"
+        android:title="Más">
+
+        <menu>
+            <item android:id="@+id/btnHome"
+                android:title="Home"
+                android:icon="@drawable/home_icon"
+               />
+
+            <item android:id="@+id/bntFavourites"
+                android:title="Favoritos"
+                android:icon="@drawable/icon_favourite"
+                />
+
+            <item android:id="@+id/btnAddRecipe"
+                android:title="Añadir receta"
+                android:icon="@drawable/add_recipe_icon"/>
+
+            <item android:id="@+id/btnAddDishType"
+                android:title="Añadir comida favorita"/>
+
+        </menu>
+
+    </item>
+
+
+
+</menu>
