@@ -1,10 +1,9 @@
-package com.miguelgallardocastillo.proyectoprimertrimestre.ui.db
+package com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.favourites
 
 import androidx.lifecycle.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
-import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.MainViewModel
-import kotlinx.coroutines.CoroutineScope
+import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.BDRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -19,7 +18,7 @@ class ViewModelBD (db: FirebaseFirestore, uid: String) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.Main) {
             _state.value = _state.value?.copy(loading = true)
-            val recetas = getFavouriteRecipes()
+            val recetas = BDRepository.getFavouriteRecipes()
             _state.value = _state.value?.copy(loading = false, recetas = recetas)
         }
     }//Fin del método init.
@@ -37,19 +36,6 @@ class ViewModelBD (db: FirebaseFirestore, uid: String) : ViewModel() {
         val recetas: List<Receta>? = null,
         val navigateTo: Receta? = null
     )
-
-    //Método que devuelve la lista de recetas favoritas de la base de datos.
-    private fun getFavouriteRecipes() : List<Receta>{
-        var listaRecetasFavoritas = listOf<Receta>()
-        //Recuperamos el mapa de recetas favoritas de la base de datos.
-        db.collection("users").document(uid).get().addOnSuccessListener {
-            val recetasFavoritas = it.get("recetasFavoritas") as HashMap<String, Receta>
-            CoroutineScope(Dispatchers.Main).launch {
-                listaRecetasFavoritas = recetasFavoritas.values.toList()
-            }
-        }
-        return listaRecetasFavoritas
-    }
 
 }//Fin de la clase.
 

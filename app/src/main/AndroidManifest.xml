@@ -8,14 +8,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/cubiertos_foreground"
+        android:icon="@mipmap/cubiertos_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/cubiertos_foreground"
+        android:roundIcon="@mipmap/cubiertos_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoPrimerTrimestre"
         tools:targetApi="31">
 
-        <activity android:name=".ui.db.LoginFragment"
+        <activity android:name=".ui.main.LoginFragment"
             android:exported="true"
             android:configChanges="orientation|screenSize">
             <intent-filter>

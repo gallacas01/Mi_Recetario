@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/swipeToRefreshAddRecipe"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         tools:context=".ui.db.AddRecipeFragment">
 
         <LinearLayout android:layout_width="wrap_content"
@@ -28,11 +25,12 @@
                 android:padding="10dp">
 
                 <ImageView
-                    android:layout_width="200dp"
+                    android:layout_width="312dp"
                     android:layout_height="150dp"
-                    android:src="@mipmap/anotar"
+                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
-                    android:layout_gravity="center"/>
+                    android:padding="0dp"
+                    android:src="@mipmap/anotar_foreground" />
 
                 <TextView
                     android:layout_width="match_parent"

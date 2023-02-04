@@ -22,26 +22,28 @@
           android:layout_width="292dp"
           android:layout_height="wrap_content"
           android:gravity="center"
-          android:text="¡Añade tu tipo de comida favorito!"
+          android:text="¡Registra tu tipo de comida favorito!"
           android:textColor="@color/customVerde3"
           android:layout_marginVertical="12dp"
           android:textSize="35dp" />
 
       <EditText
-          android:id="@+id/favouriteFood"
+          android:id="@+id/categoryInput"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:backgroundTint="@color/customVerde3"
           android:ems="10"
           android:inputType="textPersonName"
           android:minHeight="48dp"
-          android:text="pasta"
+          android:hint="pasta, ice cream, chicken, salad..."
+          android:textColorHint="@color/customVerde3"
           android:textColor="@color/customVerde3"/>
 
       <Button
+          android:id="@+id/btnEnviarCategoria"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="aceptar"
+          android:text="enviar"
           android:layout_marginTop="5dp"
           android:background="@drawable/button_rounded"
           android:textColor="@color/customWhite"/>

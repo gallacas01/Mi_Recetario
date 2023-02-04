@@ -1,9 +1,10 @@
-package com.miguelgallardocastillo.proyectoprimertrimestre.ui.db
+package com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.favourites
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,7 +21,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     private lateinit var binding : FragmentFavouritesBinding
     private val db =  FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    private val viewModelBD : ViewModelBD by viewModels{ViewModelBDFactory(db,uid) }
+    private val viewModelBD : ViewModelBD by viewModels{ ViewModelBDFactory(db,uid) }
     private val adapter = RecetaAdapter(){ Receta -> viewModelBD.navigateTo(Receta) }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -29,11 +30,13 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         binding = FragmentFavouritesBinding.bind(view).apply {
             recyclerviewRecetasFavoritas.adapter = adapter
         }
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Recetas favoritas"
 
         viewModelBD.state.observe(viewLifecycleOwner) { state ->
             binding.progress.visibility = if (state.loading) View.VISIBLE else View.GONE
+
             state.recetas?.let {
-                adapter.listaRecetas = it
+                adapter.listaRecetas = state.recetas
                 adapter.notifyDataSetChanged()
             }
 

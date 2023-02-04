@@ -32,18 +32,29 @@ class HostActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.btnHome -> {
-
                 findNavController(R.id.fragmentContainerView).navigate(R.id.mainFragment)
                 true
             }
             R.id.bntFavourites -> {
-
                 findNavController(R.id.fragmentContainerView).navigate(R.id.favouritesFragment)
                 true
             }
-            R.id.btnAddRecipe ->{
+            R.id.btnAddRecipe -> {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.addRecipeFragment)
-                true            }
+                true
+            }
+            R.id.btnAddCategory -> {
+                findNavController(R.id.fragmentContainerView).navigate(R.id.addCategoryFragment)
+                true
+            }
+            R.id.btnRecipesByCategory -> {
+                findNavController(R.id.fragmentContainerView).navigate(R.id.recipesByCategoryFragment)
+                true
+            }
+            R.id.btnRemoveCategory -> {
+                findNavController(R.id.fragmentContainerView).navigate(R.id.removeCategoryFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

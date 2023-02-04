@@ -1,4 +1,4 @@
-package com.miguelgallardocastillo.proyectoprimertrimestre.ui.db
+package com.miguelgallardocastillo.proyectoprimertrimestre.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +9,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.LoginBinding
-import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
-import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.HostActivity
 
 class LoginFragment : AppCompatActivity(R.layout.login){
 
     private lateinit var binding : LoginBinding
     private val db = FirebaseFirestore.getInstance()
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +25,7 @@ class LoginFragment : AppCompatActivity(R.layout.login){
          val editTextPassword = binding.etPassword
          val logInButton = binding.logInButton
          val sigUpButton = binding.sigUpButton
+
 
         //Cuando el usuario desea registrarse.
         sigUpButton.setOnClickListener {
@@ -40,26 +40,15 @@ class LoginFragment : AppCompatActivity(R.layout.login){
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            val id = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                            db.collection("users").document(id).set(
-                                hashMapOf(
-                                    "id" to id,
-                                    "email" to editTextEmail.text.toString(),
-                                    "password" to editTextPassword.text.toString(),
-                                   "recetasIntroducidas" to hashMapOf<String, Receta>(),
-                                    "recetasFavoritas" to hashMapOf<String, Receta>(),
-                                    "categorias" to mutableListOf<String>()
 
+                            db.collection("users").document(uid).set(
+                                hashMapOf(
+                                    "id" to uid,
+                                    "email" to editTextEmail.text.toString(),
+                                    "password" to editTextPassword.text.toString()
                                 )).addOnFailureListener() {
                                 Toast.makeText(this, "Error al registrar los datos.", Toast.LENGTH_SHORT).show()
                             }
-
-                            /*db.collection("users").document(id).collection("recetasIntroducidas").add(hashMapOf<String, Receta>())
-                            db.collection("users").document(id).collection("recetasFavoritas").add(hashMapOf<String, Receta>())
-                            db.collection("users").document(id).collection("categorias").add(mutableListOf<String>())
-
-                             */
-
 
                             //Método que redirige al mainFragment.
                             goHome()

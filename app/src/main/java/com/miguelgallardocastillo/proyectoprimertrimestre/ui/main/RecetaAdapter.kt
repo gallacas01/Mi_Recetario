@@ -14,7 +14,6 @@ import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
 class RecetaAdapter (val recetaClickedListener: (Receta) -> Unit) : RecyclerView.Adapter<RecetaAdapter.ViewHolder>(){
 
     var listaRecetas = emptyList<Receta>()
-
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         //Inflamos la vista, es decir, la Receta.
@@ -45,12 +44,9 @@ class RecetaAdapter (val recetaClickedListener: (Receta) -> Unit) : RecyclerView
             }
         }
     }
-
 }
 
-
 //Método para usar el glide en otras clases
-
 fun ImageView.glide(url: String){
     Glide.with(this).load(url).into(this)
 

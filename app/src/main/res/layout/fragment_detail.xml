@@ -100,7 +100,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="3dp"
                 android:background="@drawable/rounded_corner_bg_verde"
-                android:padding="3dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/kcal"
@@ -124,7 +124,7 @@
                     android:gravity="end"
                     android:text="Peso:"
                     android:textColor="@color/white"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"/>
             </LinearLayout>
 
             <Button
