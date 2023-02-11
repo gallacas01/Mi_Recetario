@@ -13,53 +13,49 @@
                 android:icon="@drawable/home_icon"
                />
 
-            <item android:id="@+id/viewRecipes"
-                android:title="Recetas"
-                android:icon="@drawable/cubiertos_casa">
+            <item android:id="@+id/bntFavourites"
+                android:title="Favoritos"
+                android:icon="@drawable/icon_favourite"
+                />
+
+            <item android:id="@+id/categories"
+                android:title="Mis categorías"
+                android:icon="@drawable/cubiertos">
 
                 <menu>
-                    <item android:id="@+id/bntFavourites"
-                        android:title="Favoritas"
-                        android:icon="@drawable/icon_favourite"
-                        />
                     <item android:id="@+id/btnRecipesByCategory"
-                        android:title="Categorías preferidas"/>
-                </menu>
-
-            </item>
-
-            <item android:id="@+id/btnRegister"
-                android:title="Añadir"
-                android:icon="@drawable/add_recipe_icon">
-
-                <menu>
-                    <item android:id="@+id/btnAddRecipe"
-                        android:title="Registrar receta"
-                        />
+                        android:title="Recetas"
+                        android:icon="@drawable/cubiertos_casa"/>
 
                     <item android:id="@+id/btnAddCategory"
-                        android:title="Registrar categoría"/>
-                </menu>
+                        android:title="Añadir"
+                        android:icon="@drawable/bookmark_add"/>
 
-            </item>
+                    <item android:id="@+id/btnModifyCategory"
+                        android:title="Modificar"
+                        android:icon="@drawable/pencil"/>
 
-            <item android:id="@+id/btnRemove"
-                android:title="Eliminar">
-
-                <menu>
                     <item android:id="@+id/btnRemoveCategory"
-                        android:title="Eliminar categoría"/>
-
+                        android:title="Eliminar"
+                        android:icon="@drawable/bookmark_remove"/>
                 </menu>
 
             </item>
 
+            <item android:id="@+id/btnSignOut"
+                android:title="Cerrar sesión"
+                android:icon="@drawable/sign_out_icon"
+                />
 
+             <!--<item android:id="@+id/btnRemove"
+                android:title="Eliminar">
+                <menu>
+
+                </menu>
+            </item> -->
 
         </menu>
 
     </item>
-
-
 
 </menu>

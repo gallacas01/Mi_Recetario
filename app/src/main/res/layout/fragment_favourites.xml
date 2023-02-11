@@ -9,7 +9,7 @@
     android:padding="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+   <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recetas favoritas"
@@ -17,7 +17,7 @@
         android:textSize="40dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:padding="10dp"/>
+        android:padding="10dp"/> -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewRecetasFavoritas"

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/mainFragment"
+    tools:ignore="ExtraText">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -117,6 +118,13 @@
             app:destination="@+id/detailFragment"
             android:id="@+id/recipes_by_category_fragment_to_detail_fragment"/>
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/modifyCategoryFragment"
+        android:name="com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.categories.ModifyCategoryFragment"
+        android:label="modify_category_fragment"
+        tools:layout="@layout/modify_category" >
     </fragment>
 
     <fragment android:id="@+id/removeCategoryFragment"

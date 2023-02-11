@@ -35,7 +35,8 @@
           android:ems="10"
           android:inputType="textPersonName"
           android:minHeight="48dp"
-          android:hint="pasta, ice cream, chicken, salad..."
+          android:hint="Ej: pasta, ice cream, chicken, salad..."
+          android:textCursorDrawable="@color/customVerde3"
           android:textColorHint="@color/customVerde3"
           android:textColor="@color/customVerde3"/>
 

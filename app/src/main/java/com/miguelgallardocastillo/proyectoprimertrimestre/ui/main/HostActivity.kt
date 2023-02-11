@@ -1,6 +1,7 @@
 package com.miguelgallardocastillo.proyectoprimertrimestre.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.ActivityMainBinding
+import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.BDRepository
 
 
 class HostActivity : AppCompatActivity() {
@@ -39,22 +41,35 @@ class HostActivity : AppCompatActivity() {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.favouritesFragment)
                 true
             }
-            R.id.btnAddRecipe -> {
-                findNavController(R.id.fragmentContainerView).navigate(R.id.addRecipeFragment)
+            R.id.btnRecipesByCategory -> {
+                findNavController(R.id.fragmentContainerView).navigate(R.id.recipesByCategoryFragment)
                 true
             }
             R.id.btnAddCategory -> {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.addCategoryFragment)
                 true
             }
-            R.id.btnRecipesByCategory -> {
-                findNavController(R.id.fragmentContainerView).navigate(R.id.recipesByCategoryFragment)
+            R.id.btnModifyCategory -> {
+                findNavController(R.id.fragmentContainerView).navigate(R.id.modifyCategoryFragment)
                 true
             }
             R.id.btnRemoveCategory -> {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.removeCategoryFragment)
                 true
             }
+            R.id.btnSignOut ->{
+                BDRepository.signOut()
+                val loginIntent = Intent(this@HostActivity, LoginFragment::class.java)
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(loginIntent)
+                finish()
+                true
+            }
+
+            /*R.id.btnAddRecipe -> {
+               findNavController(R.id.fragmentContainerView).navigate(R.id.addRecipeFragment)
+               true
+           }*/
             else -> super.onOptionsItemSelected(item)
         }
     }

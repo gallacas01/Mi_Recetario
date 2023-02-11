@@ -48,7 +48,7 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
             state.navigateTo?.let {
                 findNavController().navigate(
                     R.id.action_mainFragment_to_detailFragment,
-                    bundleOf(DetailFragment.EXTRA_RECETA to it),
+                    bundleOf(DetailFragment.EXTRA_RECETA to it)
                 )
                 viewModel.onNavigateDone()
             }
@@ -96,7 +96,6 @@ class MainFragment : Fragment(R.layout.fragment_main), SearchView.OnQueryTextLis
         if (!busqueda.isNullOrEmpty()) {
             CoroutineScope(Dispatchers.Main).launch {
                 binding.progress.visibility = VISIBLE
-
                 adapter.listaRecetas = viewModel.getCustomResults(busqueda)
                 adapter.notifyDataSetChanged()
                 binding.progress.visibility = GONE

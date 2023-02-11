@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
 
-class DetailViewModel (receta: Receta): ViewModel() {
+class DetailViewModel(receta: Receta): ViewModel() {
     private val _receta = MutableLiveData(receta)
     val receta: LiveData<Receta> get() = _receta
 
