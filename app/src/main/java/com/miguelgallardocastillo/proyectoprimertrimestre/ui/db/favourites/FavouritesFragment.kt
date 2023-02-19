@@ -14,6 +14,10 @@ import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.FragmentFavouritesBinding
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.detail.DetailFragment
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.RecetaAdapter
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 
 class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
@@ -35,18 +39,25 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         viewModelBD.state.observe(viewLifecycleOwner) { state ->
             binding.progress.visibility = if (state.loading) View.VISIBLE else View.GONE
 
-            state.recetas?.let {
-                adapter.listaRecetas = state.recetas
-                adapter.notifyDataSetChanged()
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    state.recetas?.collect() {
+                        adapter.listaRecetas = it
+                        adapter.notifyDataSetChanged()
+                    }
+                }
             }
 
             state.navigateTo?.let {
+                it.esFavorita = true
                 findNavController().navigate(
                     R.id.action_favouritesFragment_to_DetailFragment,
                     bundleOf(DetailFragment.EXTRA_RECETA to it),
                 )
                 viewModelBD.onNavigateDone()
             }
+
+
         }
 
     }//Fin del onViewCreated.

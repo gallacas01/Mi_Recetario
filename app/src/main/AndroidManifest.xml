@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/cubiertos_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoPrimerTrimestre"
+        android:screenOrientation="portrait"
+        android:forceDarkAllowed="false"
         tools:targetApi="31">
 
         <activity android:name=".ui.main.LoginFragment"

@@ -33,7 +33,9 @@
             android:minHeight="48dp"
             android:layout_marginVertical="5dp"
             android:hint="email"
-            android:textColorHint="@color/customVerde3"/>
+            android:textColorHint="@color/customVerde3"
+            android:textCursorDrawable="@drawable/color_cursor"
+            />
 
         <EditText
             android:id="@+id/etPassword"
@@ -48,6 +50,7 @@
             android:layout_marginVertical="6dp"
             android:backgroundTint="@color/customVerde3"
             android:textColor="@color/customVerde3"
+            android:textCursorDrawable="@drawable/color_cursor"
            />
 
         <Button

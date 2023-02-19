@@ -6,19 +6,18 @@ import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.BDRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
 class ViewModelBD (db: FirebaseFirestore, uid: String) : ViewModel() {
 
     private val _state = MutableLiveData(UiState())
     val state: LiveData<UiState> get() = _state
-    private val db =  db
-    private val uid = uid
+    val recetas  = BDRepository.getFavouriteRecipesFlow()
 
-    //Lo que se declare dentro de este bloque de código se ejecutará en el constructor.
+    //Lo que se declare dentro de este bloque de código se ejecutará cuando se construya el viewModel.
     init {
         viewModelScope.launch(Dispatchers.Main) {
             _state.value = _state.value?.copy(loading = true)
-            val recetas = BDRepository.getFavouriteRecipes()
             _state.value = _state.value?.copy(loading = false, recetas = recetas)
         }
     }//Fin del método init.
@@ -33,7 +32,7 @@ class ViewModelBD (db: FirebaseFirestore, uid: String) : ViewModel() {
 
     data class UiState(
         val loading: Boolean = false,
-        val recetas: List<Receta>? = null,
+        val recetas: Flow<List<Receta>>? = null,
         val navigateTo: Receta? = null
     )
 

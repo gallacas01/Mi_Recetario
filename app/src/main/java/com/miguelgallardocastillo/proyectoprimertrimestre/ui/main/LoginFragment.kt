@@ -34,12 +34,6 @@ class LoginFragment : AppCompatActivity(R.layout.login){
                     .addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(
-                                this,
-                                "El registro se ha llevado a cabo correctamente.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
 
                             db.collection("users").document(uid).set(
                                 hashMapOf(
@@ -50,8 +44,15 @@ class LoginFragment : AppCompatActivity(R.layout.login){
                                 Toast.makeText(this, "Error al registrar los datos.", Toast.LENGTH_SHORT).show()
                             }
 
-                            //Método que redirige al mainFragment.
-                            goHome()
+                            Toast.makeText(
+                                this,
+                                "Usuaraio registrado correctamente.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                                binding.etEmailAdress.text.toString(),
+                                binding.etPassword.text.toString())
+                                goHome()
                         } else {
                             showAlert()
                         }

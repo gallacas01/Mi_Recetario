@@ -36,10 +36,8 @@
             android:text="Nombre de la receta"
             android:textColor="@color/white"
             android:textSize="26dp" />
-
-
-
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
 
 

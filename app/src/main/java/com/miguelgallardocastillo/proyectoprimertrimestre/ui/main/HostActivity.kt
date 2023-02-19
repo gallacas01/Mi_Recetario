@@ -1,12 +1,16 @@
 package com.miguelgallardocastillo.proyectoprimertrimestre.ui.main
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.ActivityMainBinding
@@ -58,18 +62,21 @@ class HostActivity : AppCompatActivity() {
                 true
             }
             R.id.btnSignOut ->{
-                BDRepository.signOut()
-                val loginIntent = Intent(this@HostActivity, LoginFragment::class.java)
-                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(loginIntent)
-                finish()
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("¿Cerrar sesión?").setPositiveButton("Aceptar", DialogInterface.OnClickListener {
+                        dialogInterface, i ->
+
+                            BDRepository.signOut()
+                            val loginIntent = Intent(this@HostActivity, LoginFragment::class.java)
+                            loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(loginIntent)
+                            finish()
+                    Toast.makeText(this, "La sesión ha finalizado.", Toast.LENGTH_SHORT).show()
+
+                    } ).setNegativeButton("Cancelar",null)
+                builder.create().show()
                 true
             }
-
-            /*R.id.btnAddRecipe -> {
-               findNavController(R.id.fragmentContainerView).navigate(R.id.addRecipeFragment)
-               true
-           }*/
             else -> super.onOptionsItemSelected(item)
         }
     }
