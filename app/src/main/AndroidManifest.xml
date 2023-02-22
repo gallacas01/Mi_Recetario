@@ -40,6 +40,14 @@
                 android:resource="@array/preloaded_fonts" />
         </activity>
 
+        <activity
+            android:name=".ui.db.favourites.FavouritesFragment"
+            android:exported="true">
+            <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts" />
+        </activity>
+
 
     </application>
 

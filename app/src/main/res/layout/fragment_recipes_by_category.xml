@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/layout"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipe"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,39 +10,48 @@
     android:padding="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recetas de tus comidas favoritas"
-        android:background="@drawable/rounded_corner_bg_verde"
-        android:textSize="35dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:padding="10dp"/>
+        android:layout_height="match_parent"
+        android:background="@color/customWhite">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewRecetasPorCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_list" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recetas de tus comidas favoritas"
+            android:background="@drawable/rounded_corner_bg_verde"
+            android:textSize="35dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:padding="10dp"/>
 
-    <TextView
-        android:id="@+id/txtNoRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:text=""/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewRecetasPorCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_list" />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/txtNoRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:text=""/>
 
-</LinearLayout>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

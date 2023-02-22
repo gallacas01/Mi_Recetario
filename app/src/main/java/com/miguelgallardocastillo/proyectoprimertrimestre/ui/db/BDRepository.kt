@@ -28,13 +28,13 @@ object BDRepository {
         }
     }
 
-    fun deleteRecipeFromFavourites (receta: Receta, dialog:AlertDialog){
+    fun deleteRecipeFromFavourites (receta: Receta, toast: Toast){
         db.collection("users").document(uid).collection("recetasFavoritas").whereEqualTo("label",receta.label).get().addOnCompleteListener {
             if (it.isSuccessful){
                 val idReceta = it.result.first().id
                 db.collection("users").document(uid).collection("recetasFavoritas").document(idReceta).delete().addOnCompleteListener{
                     if (it.isSuccessful){
-                        dialog.show()
+                        toast.show()
                     }
                 }
             }
@@ -110,7 +110,7 @@ object BDRepository {
                 if (it.isSuccessful){
                     Toast.makeText(context,"La categoría ha sido modificada correctamente.", Toast.LENGTH_SHORT ).show()
                 }else{
-                    Toast.makeText(context,"No se ha podido eliminar la categoría.", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(context,"Error: La categoría no ha podido ser eliminada.", Toast.LENGTH_SHORT ).show()
                 }
             }
         }
@@ -123,13 +123,11 @@ object BDRepository {
              var idCategoria = categoria.first().id
              db.collection("users").document(uid).collection("categorias").document(idCategoria).delete().addOnCompleteListener {
                  if (it.isSuccessful){
-                     Toast.makeText(context,"La categoría se ha eliminado correctamente.", Toast.LENGTH_SHORT ).show()
+                     Toast.makeText(context,"La categoría ha sido eliminada correctamente.", Toast.LENGTH_SHORT ).show()
                  }else{
                      Toast.makeText(context,"Error: La categoría no ha podido ser eliminada.", Toast.LENGTH_SHORT ).show()
                  }
              }
-         }else {
-             Toast.makeText(context,"Error : La categoría que intentas eliminar no existe.", Toast.LENGTH_SHORT ).show()
          }
      }//Fin del método.
 

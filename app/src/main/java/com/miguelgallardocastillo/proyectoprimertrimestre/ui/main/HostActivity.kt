@@ -3,6 +3,7 @@ package com.miguelgallardocastillo.proyectoprimertrimestre.ui.main
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,7 +11,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.ActivityMainBinding
@@ -25,6 +26,16 @@ class HostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+            /* si esta activo el modo oscuro lo desactiva */
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
     }
 
     @SuppressLint("SuspiciousIndentation")

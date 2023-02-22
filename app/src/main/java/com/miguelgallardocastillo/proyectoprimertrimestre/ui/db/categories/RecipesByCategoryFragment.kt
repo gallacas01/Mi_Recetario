@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.FragmentRecipesByCategoryBinding
+import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
+import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.BDRepository
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.categories.RecipesByCategoryViewModelFactory
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.detail.DetailFragment
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.RecetaAdapter
@@ -55,10 +58,26 @@ class RecipesByCategoryFragment : Fragment(R.layout.fragment_recipes_by_category
                     viewModel.onNavigateDone()
                 }
             }
-
-
         }
 
+        binding.swipe.setOnRefreshListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                binding.progress.visibility = View.VISIBLE
+                /*Le pasamos al adapter una lista de recetas vacía para que no muestre nada y pueda verse la progress bar
+                al refrescar el recycler.*/
+                val recetasVacias = emptyList<Receta>()
+                adapter.listaRecetas = recetasVacias
+                adapter.notifyDataSetChanged()
+
+                adapter.listaRecetas = BDRepository.getCustomRecipesByCategory()
+                adapter.notifyDataSetChanged()
+                binding.progress.visibility = View.GONE
+            }
+                binding.swipe.isRefreshing = false
+            }
+
     }//Fin del onViewCreated.
+
+
 
 }//Fin de la clase.

@@ -39,14 +39,19 @@ class ModifyCategoryFragment : Fragment(R.layout.modify_category){
             binding.btnModifyCategory.setOnClickListener{
                 val newValue = binding.categoryNewValue.text.toString()
                 if (newValue == ""){
-                    Toast.makeText(context, "Por favor, escribe que quieres modificar.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Por favor, introduce algún valor.",Toast.LENGTH_SHORT).show()
                 }else{
                     viewLifecycleOwner.lifecycleScope.launch {
-                        var oldCategory = spinnerCategories.selectedItem.toString()
-                        BDRepository.modifyCategory(oldCategory , newValue, requireContext())
-                        val categoriesUpdated = BDRepository.getAllCategories()
-                        spinnerCategories.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item, categoriesUpdated)
-                        binding.categoryNewValue.setText("")
+
+                        if (currentCategories.size == 0){
+                            Toast.makeText(context, "Error: No se ha registrado ninguna categoría.", Toast.LENGTH_SHORT).show()
+                        }else{
+                            var oldCategory = spinnerCategories.selectedItem.toString()
+                            BDRepository.modifyCategory(oldCategory , newValue, requireContext())
+                            val categoriesUpdated = BDRepository.getAllCategories()
+                            spinnerCategories.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item, categoriesUpdated)
+                            binding.categoryNewValue.setText("")
+                        }
                     }
                 }
             }

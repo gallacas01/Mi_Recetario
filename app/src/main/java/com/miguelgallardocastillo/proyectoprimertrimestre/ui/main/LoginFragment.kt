@@ -30,33 +30,39 @@ class LoginFragment : AppCompatActivity(R.layout.login){
         //Cuando el usuario desea registrarse.
         sigUpButton.setOnClickListener {
             if (editTextEmail.text.isNotEmpty() && editTextPassword.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(editTextEmail.text.toString(),editTextPassword.text.toString())
-                    .addOnCompleteListener {
 
-                        if (it.isSuccessful) {
+                if (editTextPassword.text.length < 6){
+                    Toast.makeText(this, "La contraseña debe contener, al menos, 6 caracteres.", Toast.LENGTH_SHORT).show()
+                }else{
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(editTextEmail.text.toString(),editTextPassword.text.toString())
+                        .addOnCompleteListener {
 
-                            db.collection("users").document(uid).set(
-                                hashMapOf(
-                                    "id" to uid,
-                                    "email" to editTextEmail.text.toString(),
-                                    "password" to editTextPassword.text.toString()
-                                )).addOnFailureListener() {
-                                Toast.makeText(this, "Error al registrar los datos.", Toast.LENGTH_SHORT).show()
-                            }
+                            if (it.isSuccessful) {
 
-                            Toast.makeText(
-                                this,
-                                "Usuaraio registrado correctamente.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            FirebaseAuth.getInstance().signInWithEmailAndPassword(
-                                binding.etEmailAdress.text.toString(),
-                                binding.etPassword.text.toString())
+                                db.collection("users").document(uid).set(
+                                    hashMapOf(
+                                        "id" to uid,
+                                        "email" to editTextEmail.text.toString(),
+                                        "password" to editTextPassword.text.toString()
+                                    )).addOnFailureListener() {
+                                    Toast.makeText(this, "Error al registrar los datos.", Toast.LENGTH_SHORT).show()
+                                }
+
+                                Toast.makeText(
+                                    this,
+                                    "Usuaraio registrado correctamente.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                                    binding.etEmailAdress.text.toString(),
+                                    binding.etPassword.text.toString())
                                 goHome()
-                        } else {
-                            showAlert()
-                        }
-                    }//Fin del addOnCompleteListener.
+                            } else {
+                                showAlert()
+                            }
+                        }//Fin del addOnCompleteListener.
+                }
+
 
             } else {
                 Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT)
@@ -77,7 +83,7 @@ class LoginFragment : AppCompatActivity(R.layout.login){
                             Toast.makeText(this, "Usuario correcto.", Toast.LENGTH_SHORT).show()
                             goHome()
                         } else {
-                            showAlert()
+                            Toast.makeText(this, "Datos de inicio de sesión  incorrectos.", Toast.LENGTH_SHORT).show()
                         }
                     }//Fin del addOnCompleteListener.
             } else {

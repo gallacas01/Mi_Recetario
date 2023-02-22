@@ -17,11 +17,9 @@
                 android:title="Favoritos"
                 android:icon="@drawable/icon_favourite"
                 />
-
             <item android:id="@+id/categories"
                 android:title="Mis categorías"
                 android:icon="@drawable/cubiertos">
-
                 <menu>
                     <item android:id="@+id/btnRecipesByCategory"
                         android:title="Recetas"
@@ -46,13 +44,6 @@
                 android:title="Cerrar sesión"
                 android:icon="@drawable/sign_out_icon"
                 />
-
-             <!--<item android:id="@+id/btnRemove"
-                android:title="Eliminar">
-                <menu>
-
-                </menu>
-            </item> -->
 
         </menu>
 

@@ -23,7 +23,7 @@ class AddCategoryFragment : Fragment(R.layout.add_category) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = AddCategoryBinding.bind(view)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Registar categoría"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Registrar categoría"
 
         binding.btnEnviarCategoria.setOnClickListener{
             val categoriIntroducida = binding.categoryInput.text.toString().trim()

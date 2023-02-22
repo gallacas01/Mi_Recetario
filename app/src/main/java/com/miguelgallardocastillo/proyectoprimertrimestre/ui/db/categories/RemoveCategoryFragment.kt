@@ -40,11 +40,15 @@ class RemoveCategoryFragment : Fragment(R.layout.remove_category){
             binding.btnRemoveCategory.setOnClickListener{
 
                 viewLifecycleOwner.lifecycleScope.launch {
-                    //Eliminamos la categoría y volvemos a hacer una petición de las categorías actuales
-                    var categoryToRemove = spinnerCategories.selectedItem.toString()
-                    BDRepository.removeCategory(categoryToRemove, requireContext())
-                    val categoriesUpdated = BDRepository.getAllCategories()
-                    spinnerCategories.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item, categoriesUpdated)
+                    if(currentCategories.size == 0){
+                            Toast.makeText(context,"Error: No se ha registrado ninguna categoría.", Toast.LENGTH_SHORT).show()
+                       }else{
+                        //Eliminamos la categoría y volvemos a hacer una petición de las categorías actuales
+                        var categoryToRemove = spinnerCategories.selectedItem.toString()
+                        BDRepository.removeCategory(categoryToRemove, requireContext())
+                        val categoriesUpdated = BDRepository.getAllCategories()
+                        spinnerCategories.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item, categoriesUpdated)
+                    }
                 }
             }
         }

@@ -8,17 +8,21 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miguelgallardocastillo.proyectoprimertrimestre.R
 import com.miguelgallardocastillo.proyectoprimertrimestre.databinding.FragmentDetailBinding
 import com.miguelgallardocastillo.proyectoprimertrimestre.model.Receta
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.BDRepository
+import com.miguelgallardocastillo.proyectoprimertrimestre.ui.db.favourites.FavouritesFragment
+import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.HostActivity
 import com.miguelgallardocastillo.proyectoprimertrimestre.ui.main.glide
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -85,10 +89,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     db.collection("users").document(id).collection("recetasFavoritas").add(receta).addOnCompleteListener {
 
                         if (it.isSuccessful){
-                            insercionExitosa()
+                            Toast.makeText(context, "La receta se ha añadido a favoritos correctamente.", Toast.LENGTH_SHORT).show()
                             //Cambiamos el color del botón de favoritos a rojo.
                             binding.btnFavourite.setSupportImageTintList(ColorStateList.valueOf(Color.RED))
-                            //binding.btnFavourite.background.setTint(Color.WHITE)
                         }
 
                     }.addOnFailureListener{
@@ -104,12 +107,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                             dialogInterface, i ->
 
                         viewLifecycleOwner.lifecycleScope.launch {
-                            BDRepository.deleteRecipeFromFavourites(receta,borradoExitoso())
+                            val mensaje = Toast.makeText(context, "La receta se ha eliminado de favoritos correctamente.", Toast.LENGTH_SHORT)
+                            BDRepository.deleteRecipeFromFavourites(receta,mensaje)
                             binding.btnFavourite.setSupportImageTintList(ColorStateList.valueOf(Color.WHITE))
                             binding.btnFavourite.background.setTint(resources.getColor(R.color.customVerde2))
                         }
-
-
+                        if (receta.esFavorita){
+                            findNavController().navigate(R.id.action_detailFrament_to_FavouritesFragment)
+                        }
                     }).setNegativeButton("Cancelar",DialogInterface.OnClickListener{
                             dialogInterface, i ->  //No se elimina la receta de favoritos.
                     })
@@ -121,15 +126,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
     }//Fin del onViewCreated.
 
-    private fun insercionExitosa(){
-        val builder = AlertDialog.Builder(this.requireContext())
-        builder.setTitle("Éxito")
-        builder.setMessage("La receta ha sido añadida a favoritos.")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog : AlertDialog = builder.create()
-        dialog.show()
-    }
-
     private fun insercionErronea(){
         val builder = AlertDialog.Builder(this.requireContext())
         builder.setTitle("Error")
@@ -137,15 +133,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         builder.setPositiveButton("Aceptar", null)
         val dialog : AlertDialog = builder.create()
         dialog.show()
-    }
-
-    private fun borradoExitoso() : AlertDialog{
-        val builder = AlertDialog.Builder(this.requireContext())
-        builder.setTitle("Éxito")
-        builder.setMessage("La receta ha sido eliminada de favoritos.")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog : AlertDialog = builder.create()
-        return dialog
     }
 
 }//Fin del DetailFragment.
